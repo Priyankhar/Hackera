@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TEENCYBER360: Red Flag or Green Flag</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('tyu.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #00ffc3;
+    }
+
+    .instruction {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    #game-box {
+      max-width: 600px;
+      margin: 40px auto; /* shifted down with margin */
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 195, 0.4);
+    }
+
+    #question-card {
+      padding: 30px;
+      font-size: 1.3em;
+      background-color: #2b2b2b;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .button-container button {
+      padding: 15px 25px;
+      font-size: 1em;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    #red-flag {
+      background-color: #ff4c4c;
+      color: white;
+    }
+
+    #green-flag {
+      background-color: #4cff88;
+      color: black;
+    }
+
+    .button-container button:hover {
+      transform: scale(1.05);
+    }
+
+    #feedback {
+      font-size: 1.2em;
+      margin-top: 15px;
+    }
+
+    .score {
+      font-size: 1.1em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>TeenCyber360</h1>
+    <p class="instruction">Swipe left for “🚩Red Flag” or right for “✅Green Flag”</p>
+    <div id="game-box">
+      <div id="question-card">
+        <p id="question-text"></p>
+      </div>
+      <div class="button-container">
+        <button id="red-flag">🚩 Red Flag</button>
+        <button id="green-flag">✅ Green Flag</button>
+      </div>
+      <div id="feedback"></div>
+      <p class="score">Score: <span id="score">0</span></p>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      { text: "A stranger gives you a compliment and asks for a private chat.", answer: "red" },
+      { text: "Your friend double checks before posting your group photo.", answer: "green" },
+      { text: "You’re offered free money for clicking a link.", answer: "red" },
+      { text: "A classmate asks permission before tagging you online.", answer: "green" },
+      { text: "Someone insists you keep your conversation a secret from adults.", answer: "red" },
+      { text: "You use two-factor authentication on all accounts.", answer: "green" },
+      { text: "You receive a pop-up saying you’ve won an iPhone.", answer: "red" },
+      { text: "You report a suspicious user to a trusted adult.", answer: "green" },
+      { text: "You’re asked to download an unknown file to get free game coins.", answer: "red" },
+      { text: "You use strong, unique passwords for each account.", answer: "green" }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionText = document.getElementById("question-text");
+    const redBtn = document.getElementById("red-flag");
+    const greenBtn = document.getElementById("green-flag");
+    const feedbackEl = document.getElementById("feedback");
+    const scoreEl = document.getElementById("score");
+
+    function loadQuestion() {
+      if (currentQuestion < questions.length) {
+        questionText.textContent = questions[currentQuestion].text;
+        feedbackEl.textContent = "";
+      } else {
+        questionText.textContent = "🎉 Game Over!";
+        document.querySelector(".button-container").style.display = "none";
+        feedbackEl.textContent = `Your final score is ${score} / ${questions.length}`;
+        feedbackEl.style.color = "#00ffc3";
+      }
+    }
+
+    function handleAnswer(choice) {
+      const correct = questions[currentQuestion].answer;
+      if (choice === correct) {
+        score++;
+        feedbackEl.textContent = "✅ Correct!";
+        feedbackEl.style.color = "lightgreen";
+      } else {
+        feedbackEl.textContent = "🚫 Not Safe!";
+        feedbackEl.style.color = "salmon";
+      }
+      scoreEl.textContent = score;
+      currentQuestion++;
+      setTimeout(loadQuestion, 1000);
+    }
+
+    redBtn.addEventListener("click", () => handleAnswer("red"));
+    greenBtn.addEventListener("click", () => handleAnswer("green"));
+
+    loadQuestion();
+  </script>
+</body>
+</html>
