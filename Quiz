@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberGuardians - Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('zzz.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px 30px;
+      color: #00ffe1;
+      position: relative;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    .nav-links a {
+      color: #00ffe1;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .profile-container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #00ffe1;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: #111;
+      border: 1px solid #00ffe1;
+      border-radius: 8px;
+      overflow: hidden;
+      min-width: 140px;
+      z-index: 10;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid #00ffe1;
+    }
+
+    .dropdown a:hover {
+      background-color: #00ffe1;
+      color: #000;
+    }
+
+    .quiz-container {
+      max-width: 700px;
+      margin: 80px auto;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00ffe1;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .options button {
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #00ffe1;
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #00bfa5;
+    }
+
+    .score {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .next-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff00a6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .next-btn:hover {
+      background-color: #d60088;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Cyber Quiz</h1>
+    <div class="nav-links">
+      <a href="#">Home</a> |
+      <a href="#">Game</a>
+      <div class="profile-container" id="profileDropdown">
+        <div class="profile-pic">
+          <img src="https://i.pravatar.cc/150?img=5" alt="Profile" />
+        </div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="edit.html">View Profile</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-container">
+    <div id="question-container">
+      <div id="question" class="question">Loading question...</div>
+      <div id="options" class="options"></div>
+      <button id="next-btn" class="next-btn">Next</button>
+    </div>
+    <div class="score">Score: <span id="score">0</span></div>
+  </div>
+
+  <script>
+    // Dropdown toggle
+    const profileContainer = document.getElementById('profileDropdown');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    profileContainer.addEventListener('click', () => {
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!profileContainer.contains(e.target)) {
+        dropdownMenu.style.display = 'none';
+      }
+    });
+
+    // Quiz logic
+    const questions = [
+      { question: "What should you do if someone online threatens you?", options: ["A. Respond politely", "B. Block and report them immediately ", "C. Share their profile with friends"], correct: 1 },
+      { question: "Which of these is safe to post online?", options: ["A. Home address", "B. Your school timetable", "C. A nature photo you clicked "], correct: 2 },
+      { question: "What is a strong password?", options: ["A. Your name and birthdate", "B. “123456”", "C. A mix of letters, numbers, and symbols "], correct: 2 },
+      { question: "Which platform is commonly used by scammers?", options: ["A. Instagram", "B. Facebook", "C. Any social platform can be misused "], correct: 2 },
+      { question: "What does ‘digital footprint’ mean?", options: ["A. The size of your screen", "B. The trail of information you leave online ", "C. A new dance trend"], correct: 1 },
+      { question: "Who should you talk to if you're being cyberbullied?", options: ["A. Nobody – it’s your problem", "B. A trusted adult, parent, or teacher ", "C. The person bullying you"], correct: 1 },
+      { question: "What is the right response to a suspicious link in your DMs?", options: ["A. Click to see what it is", "B. Delete it and inform a trusted adult ", "C. Share it with friends"], correct: 1 },
+      { question: "Is it okay to give your password to your best friend?", options: ["A. Yes, if they promise not to misuse it", "B. No, passwords should be private ", "C. Only for fun"], correct: 1 },
+      { question: "What should you do if you feel uncomfortable talking to someone online?", options: ["A. Ignore your feelings", "B. Block and stop talking to them ", "C. Tell them you’re scared but keep chatting"], correct: 1 },
+      { question: "What is digital consent?", options: ["A. Asking before tagging or posting about others ", "B. Saying yes to terms and conditions without reading", "C. Allowing strangers to message you"], correct: 0 }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById('question');
+    const optionsEl = document.getElementById('options');
+    const scoreEl = document.getElementById('score');
+    const nextBtn = document.getElementById('next-btn');
+
+    function loadQuestion() {
+      const current = questions[currentQuestionIndex];
+      questionEl.textContent = current.question;
+      optionsEl.innerHTML = '';
+      current.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        btn.onclick = () => selectOption(index);
+        optionsEl.appendChild(btn);
+      });
+      nextBtn.style.display = 'none';
+    }
+
+    function selectOption(index) {
+      const correctIndex = questions[currentQuestionIndex].correct;
+      if (index === correctIndex) {
+        score++;
+        scoreEl.textContent = score;
+      }
+      Array.from(optionsEl.children).forEach((btn, i) => {
+        btn.disabled = true;
+        btn.style.backgroundColor = i === correctIndex ? '#00ff88' : '#ff4d4d';
+      });
+      nextBtn.style.display = 'inline-block';
+    }
+
+    nextBtn.onclick = () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        questionEl.textContent = "🎉 Quiz Complete!";
+        optionsEl.innerHTML = '';
+        nextBtn.style.display = 'none';
+      }
+    };
+
+    loadQuestion();
+
+  </script>
+  <a href="profile.html" class="View Profile">View Profile</a>
+
+</body>
+</html>
