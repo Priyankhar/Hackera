@@ -1,0 +1,48 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberShield</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .start-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .start-button:hover {
+            background-color: #218838;
+        }
+
+        body {
+            text-align: center;
+            margin-top: 20%;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background-image: url("lll.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <h1> TeenCyber360  </h1>
+    <p>Protect yourself online by playing and learning cybersecurity the fun way!!!</p>
+    <a href="login.html" class="start-button">Start Game</a>
+</body>
+</html>
