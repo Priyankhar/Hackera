@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Court Room - CyberShield</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+      background-image: url('court-bg.jpg'); /* You can replace this with your background */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border-radius: 15px;
+      margin-top: 50px;
+      box-shadow: 0 0 20px rgba(0, 255, 195, 0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ffc3;
+      margin-bottom: 20px;
+    }
+
+    .story-image {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .story-text {
+      font-size: 1.2em;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .question {
+      margin: 20px 0;
+    }
+
+    .question h3 {
+      color: #00d8ff;
+    }
+
+    .options label {
+      display: block;
+      margin: 8px 0;
+      background-color: #1e1e1e;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .options label:hover {
+      background-color: #333;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      padding: 12px 20px;
+      background-color: #00ffc3;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .submit-btn:hover {
+      background-color: #00d8ff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Court Room: Judge Wisely</h1>
+    <img src="aarav_story.jpg" alt="Aarav chatting online" class="story-image">
+    
+    <div class="story-text">
+      Aarav, a 12-year-old boy, gets a friend request from someone named <strong>"CoolGirl123"</strong> on a game he plays daily. 
+      She seems friendly and knows a lot about the game. After a few chats, she starts asking personal questions—<br><br>
+      <em>“Where do you live?” “Do you live alone?”</em><br>
+      and later, <em>“Let’s meet at the mall this Saturday, don’t tell your parents.”</em>
+    </div>
+
+    <form>
+      <div class="question">
+        <h3>1. What should Aarav do about the friend request?</h3>
+        <div class="options">
+          <label><input type="radio" name="q1"> Accept the friend request and continue chatting</label>
+          <label><input type="radio" name="q1"> Reject the friend request</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>2. Should Aarav share personal details?</h3>
+        <div class="options">
+          <label><input type="radio" name="q2"> Yes, since she seems nice</label>
+          <label><input type="radio" name="q2"> No, never share personal info online</label>
+        </div>
+      </div>
+
+      <div class="question">
+        <h3>3. What’s the safest next step for Aarav?</h3>
+        <div class="options">
+          <label><input type="radio" name="q3"> Keep chatting, it’s probably harmless</label>
+          <label><input type="radio" name="q3"> Tell a trusted adult immediately</label>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Answers</button>
+    </form>
+  </div>
+
+</body>
+</html>
