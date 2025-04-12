@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - CyberShield</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      max-width: 350px;
+      width: 90%;
+      color: #fff;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #00d8ff;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-container button:hover {
+      background-color: #0056b3;
+    }
+
+    .login-container a {
+      display: block;
+      margin-top: 15px;
+      color: #ccc;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .login-container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login to CyberShield</h2>
+    <form onsubmit="handleLogin(event)">
+      <input type="text" placeholder="Email or Username" required>
+      <input type="password" placeholder="Password" required>
+
+    </form>
+    <a href="#">Forgot your password?</a>
+    <a href="#">Don’t have an account? Sign up</a>
+    <a href="dashboard.html" class="Login-button">Login</a>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      alert("Login feature coming soon!");
+    }
+  </script>
+</body>
+</html>
